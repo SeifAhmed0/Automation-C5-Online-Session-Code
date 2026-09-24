@@ -10,6 +10,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class F02_Dropdown {
     WebDriver driver;
     String AppURL = "https://the-internet.herokuapp.com/";
@@ -58,6 +60,16 @@ public class F02_Dropdown {
         WebElement optionOneLoc = driver.findElement(By.cssSelector("option[value=\"1\"]"));
         boolean actualResult = optionOneLoc.isSelected();
         Assert.assertTrue(actualResult);
+    }
+    @Test
+    void handleDropdown(){
+        WebElement dropdownField = driver.findElement(By.xpath("//a[@href=\"/dropdown\"]"));
+        dropdownField.click();
+
+        List<WebElement> eles = driver.findElements(By.tagName("option"));
+        eles.get(1).click();
+
+        WebElement optionLoc = driver.findElement(By.cssSelector(""));
     }
     @AfterMethod
     void close() {
