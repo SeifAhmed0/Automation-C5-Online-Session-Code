@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -63,16 +64,21 @@ public class F02_Dropdown {
     }
     @Test
     void handleDropdown(){
+        SoftAssert soft = new SoftAssert();
+
         WebElement dropdownField = driver.findElement(By.xpath("//a[@href=\"/dropdown\"]"));
         dropdownField.click();
 
         List<WebElement> eles = driver.findElements(By.tagName("option"));
         eles.get(1).click();
 
-        WebElement optionLoc = driver.findElement(By.cssSelector(""));
+        WebElement optionLoc = driver.findElement(By.cssSelector("option[value=\"1\"]"));
+        boolean actual = optionLoc.isSelected();
+        soft.assertTrue(actual);
+        soft.assertAll();
     }
     @AfterMethod
-    void close() {
+    void tearDown() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
