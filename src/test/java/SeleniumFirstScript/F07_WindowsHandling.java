@@ -48,7 +48,7 @@ public class F07_WindowsHandling {
         Assert.assertTrue(actual);
         driver.close(); // to close the tab not the whole driver
 
-        driver.switchTo().window(TabsIds.get(0));
+        driver.switchTo().window(TabsIds.getFirst());   // TabsIds.getFirst() = TabsIds.get(0)
         System.out.println(driver.getCurrentUrl());
     }
 }
